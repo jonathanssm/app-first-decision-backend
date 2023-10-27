@@ -2,7 +2,6 @@ package com.firstdecision.appfirstdecisionbackend.resource;
 
 import com.firstdecision.appfirstdecisionbackend.model.dto.UserCredentialDTO;
 import com.firstdecision.appfirstdecisionbackend.model.dto.UserDTO;
-import com.firstdecision.appfirstdecisionbackend.model.filter.UserFilter;
 import com.firstdecision.appfirstdecisionbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -38,10 +37,10 @@ public class UserResource {
         return ResponseEntity.ok().body(userService.findAll());
     }
 
-    @PostMapping("/paginated")
-    protected ResponseEntity<Page<UserDTO>> findByFilter(@RequestBody UserFilter filter
+    @GetMapping("/paginated")
+    protected ResponseEntity<Page<UserDTO>> findByFilter(String name, String email
             , @PageableDefault() Pageable pageable) {
-        return ResponseEntity.ok().body(userService.findByFilter(filter, pageable));
+        return ResponseEntity.ok().body(userService.findByFilter(name, email, pageable));
     }
 
 }

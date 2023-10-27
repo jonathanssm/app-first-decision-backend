@@ -3,7 +3,6 @@ package com.firstdecision.appfirstdecisionbackend.service;
 import com.firstdecision.appfirstdecisionbackend.model.dto.UserCredentialDTO;
 import com.firstdecision.appfirstdecisionbackend.model.dto.UserDTO;
 import com.firstdecision.appfirstdecisionbackend.model.entity.User;
-import com.firstdecision.appfirstdecisionbackend.model.filter.UserFilter;
 import com.firstdecision.appfirstdecisionbackend.repository.IUserRepository;
 import com.firstdecision.appfirstdecisionbackend.util.Converter;
 import lombok.RequiredArgsConstructor;
@@ -67,10 +66,10 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public Page<UserDTO> findByFilter(UserFilter filter, Pageable pageable) {
+    public Page<UserDTO> findByFilter(String name, String email, Pageable pageable) {
         log.debug("Init find users by filter");
 
-        Page<User> page = userRepository.findByFilter(filter, pageable);
+        Page<User> page = userRepository.findByFilter(name, email, pageable);
 
         log.debug("End find users by filter");
 
