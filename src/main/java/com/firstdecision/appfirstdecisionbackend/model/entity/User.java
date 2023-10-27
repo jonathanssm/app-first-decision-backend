@@ -1,4 +1,4 @@
-package com.firstdecision.appfirstdecisionbackend.entity;
+package com.firstdecision.appfirstdecisionbackend.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +20,13 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "login")
-    private String login;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
 
 }

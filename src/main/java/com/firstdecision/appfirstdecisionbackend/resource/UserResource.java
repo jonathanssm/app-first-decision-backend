@@ -1,6 +1,8 @@
 package com.firstdecision.appfirstdecisionbackend.resource;
 
-import com.firstdecision.appfirstdecisionbackend.dto.UserDTO;
+import com.firstdecision.appfirstdecisionbackend.model.dto.UserCredentialDTO;
+import com.firstdecision.appfirstdecisionbackend.model.dto.UserDTO;
+import com.firstdecision.appfirstdecisionbackend.model.filter.UserFilter;
 import com.firstdecision.appfirstdecisionbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,6 +23,11 @@ public class UserResource {
 
     private final UserService userService;
 
+    @PostMapping("/login")
+    protected ResponseEntity<Boolean> login(@Valid @RequestBody UserCredentialDTO dto) {
+        return ResponseEntity.ok().body(userService.login(dto));
+    }
+
     @PostMapping
     protected ResponseEntity<UserDTO> insert(@Valid @RequestBody UserDTO dto) {
         return ResponseEntity.ok().body(userService.insert(dto));
@@ -31,9 +38,10 @@ public class UserResource {
         return ResponseEntity.ok().body(userService.findAll());
     }
 
-    @GetMapping("/paginated")
-    protected ResponseEntity<Page<UserDTO>> findByFilter(@RequestParam(required = false) String login, @PageableDefault() Pageable pageable) {
-        return ResponseEntity.ok().body(userService.findByFilter(login, pageable));
+    @PostMapping("/paginated")
+    protected ResponseEntity<Page<UserDTO>> findByFilter(@RequestBody UserFilter filter
+            , @PageableDefault() Pageable pageable) {
+        return ResponseEntity.ok().body(userService.findByFilter(filter, pageable));
     }
 
 }
