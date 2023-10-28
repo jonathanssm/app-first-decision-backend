@@ -24,7 +24,7 @@ public class Security extends WebSecurityConfigurerAdapter {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://localhost:4200"); // Substitua pela origem do seu aplicativo Angular
+        config.addAllowedOrigin("http://localhost:4200");
         config.addAllowedMethod("*");
         config.addAllowedHeader("*");
         source.registerCorsConfiguration("/**", config);
@@ -37,7 +37,7 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(corsFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/public/**").permitAll()
-                .antMatchers("/api/**").permitAll() // Permitir todas as solicitações para /api/**
+                .antMatchers("/api/**").permitAll()
                 .and()
                 .httpBasic()
                 .and()
