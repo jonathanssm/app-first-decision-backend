@@ -6,7 +6,7 @@ name: Build and deploy JAR app to Azure Web App - app-first-decision-backend
 on:
   push:
     branches:
-      - developer
+      - prod
   workflow_dispatch:
 
 jobs:
