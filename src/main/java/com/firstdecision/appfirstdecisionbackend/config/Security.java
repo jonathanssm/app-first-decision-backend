@@ -25,7 +25,7 @@ public class Security extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("http://localhost:4200");
-        config.addAllowedOrigin("https://app-first-decision-backend.azurewebsites.net");
+        config.addAllowedOrigin("https://app-first-decision.netlify.app");
         config.addAllowedMethod("*");
         config.addAllowedHeader("*");
         source.registerCorsConfiguration("/**", config);
